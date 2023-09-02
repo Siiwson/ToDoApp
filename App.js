@@ -1,43 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import registerNNPushToken from 'native-notify'
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import registerNNPushToken from "native-notify";
+import { StatusBar } from "expo-status-bar";
 
-import Home from './src/screens/Home'
-import ChosenTask from './src/screens/ChosenTask'
+import Home from "./src/screens/Home";
+import ChosenTask from "./src/screens/ChosenTask";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // push notifications
-  registerNNPushToken(6706, 'oL9SCgD5YLtqDddSIC1JFI')
-
   // globalstate menagment
-  const [toDoList, setToDoList] = useState([{ id: 1, task: 'task nr 1' }])
-  const [task, setTask] = useState('')
-  const [chosenTask, setChosenTask] = useState('')
+  const [toDoList, setToDoList] = useState([
+    { id: 1, task: "task nr 1" },
+    { id: 2, task: "aha" },
+  ]);
+  const [task, setTask] = useState("");
+  const [chosenTask, setChosenTask] = useState("");
 
   const GlobalState = {
-    toDoList, setToDoList,
-    task, setTask,
-    chosenTask, setChosenTask
-  }
+    toDoList,
+    setToDoList,
+    task,
+    setTask,
+    chosenTask,
+    setChosenTask,
+  };
 
   // navigation
   return (
     <NavigationContainer>
       <Stack.Navigator>
-
         <Stack.Screen name='Home' options={{ headerShown: false }}>
-          {props => <Home {...props} GlobalState={GlobalState} />}
+          {(props) => <Home {...props} GlobalState={GlobalState} />}
         </Stack.Screen>
 
         <Stack.Screen name='ChosenTask' options={{ headerShown: false }}>
-          {props => <ChosenTask {...props} GlobalState={GlobalState} />}
+          {(props) => <ChosenTask {...props} GlobalState={GlobalState} />}
         </Stack.Screen>
-
       </Stack.Navigator>
+      <StatusBar style='auto' />
     </NavigationContainer>
-  )
+  );
 }
-
