@@ -23,7 +23,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
         onPress={() => deleteItemAndReturn(chosenTask.id)}
         style={styles.deleteItem}
       >
-        <FontAwesome name='trash' size={60} color='#ff2424' />
+        <FontAwesome name='trash' size={50} color='#ff2424' />
       </Pressable>
       <Footer navigation={navigation} />
     </View>
@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   deleteItem: {
+    zIndex: 1,
     position: "absolute",
-    bottom: 100,
+    bottom: 45,
     right: 20,
     backgroundColor: "#ededed",
     width: 75,
