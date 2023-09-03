@@ -5,7 +5,9 @@ import Constants from "expo-constants";
 export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.text}>Todo List</Text>
+      <Text style={styles.text}>
+        Todo <Text style={{ color: "#145bde" }}>List</Text>
+      </Text>
     </View>
   );
 }

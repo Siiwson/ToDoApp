@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Pressable,
-  FlatList,
-} from "react-native";
-import React, { useState, useEffect } from "react";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { StyleSheet, Text, View } from "react-native";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -36,7 +27,7 @@ const styles = StyleSheet.create({
   body: {
     flex: 8,
     width: "100%",
-    alignItems: "center",
+    alignItems: "flex-start",
     backgroundColor: "#14141410",
     paddingVertical: 40,
     paddingHorizontal: 24,

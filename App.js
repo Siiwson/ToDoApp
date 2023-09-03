@@ -12,8 +12,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   // globalstate menagment
   const [toDoList, setToDoList] = useState([
-    { id: 1, task: "task nr 1" },
-    { id: 2, task: "aha" },
+    { id: 1, task: "task nr 1", isSelected: false },
+    { id: 2, task: "aha", isSelected: true },
   ]);
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");

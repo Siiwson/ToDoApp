@@ -1,33 +1,18 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Pressable,
-  FlatList,
-} from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 
 import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import ToDoList from "../Components/ToDoList";
 
 export default function Home({ navigation, GlobalState }) {
-  const { toDoList, setToDoList, task, setTask, chosenTask, setChosenTask } =
-    GlobalState;
+  const { toDoList, setToDoList, task, setTask } = GlobalState;
 
   const handleSaveTask = () => {
     const index = toDoList.length + 1;
-    setToDoList((prevState) => [...prevState, { id: index, task: task }]);
+    setToDoList((prevState) => [
+      ...prevState,
+      { id: index, task: task, isSelected: false },
+    ]);
     setTask("");
-  };
-  const handleChooseTask = (item) => {
-    setChosenTask(item);
-    navigation.navigate("ChosenTask");
-  };
-
-  const deleteItemById = (id) => {
-    const filteredData = toDoList.filter((item) => item.id !== id);
-    setToDoList(filteredData);
   };
 
   return (
@@ -46,29 +31,8 @@ export default function Home({ navigation, GlobalState }) {
           </Pressable>
         </View>
 
-        <FlatList
-          data={toDoList}
-          renderItem={({ item }) => (
-            <View style={styles.task}>
-              <Pressable
-                onPress={() => handleChooseTask(item)}
-                style={{ width: "90%" }}
-              >
-                <Text>
-                  {item.task.length < 85
-                    ? item.task
-                    : item.task.slice(0, 85) + "..."}
-                </Text>
-              </Pressable>
-              <Pressable onPress={() => deleteItemById(item.id)}>
-                <FontAwesome name='trash' size={34} color='black' />
-              </Pressable>
-            </View>
-          )}
-          keyExtractor={(item) => item.id}
-        />
+        <ToDoList GlobalState={GlobalState} navigation={navigation} />
       </View>
-      <Footer navigation={navigation} />
     </View>
   );
 }
@@ -85,24 +49,6 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#14141410",
   },
-  task: {
-    backgroundColor: "white",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   input: {
     backgroundColor: "white",
     padding: 15,
@@ -118,7 +64,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
-    width: 270,
+    width: "100%",
   },
   button: {
     backgroundColor: "#14141450",
