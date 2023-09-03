@@ -29,22 +29,21 @@ export default function ToDoList({ GlobalState, navigation }) {
     <FlatList
       data={toDoList}
       renderItem={({ item }) => (
-        <View style={item.isDone ? styles.taskDone : styles.task}>
-          <Pressable
-            onPress={() => handleChooseTask(item)}
-            onLongPress={() => handleMarkAsDone(item)}
-            style={{ width: "90%" }}
-          >
+        <Pressable
+          onPress={() => handleChooseTask(item)}
+          onLongPress={() => handleMarkAsDone(item)}
+        >
+          <View style={item.isDone ? styles.taskDone : styles.task}>
             <Text style={item.isDone ? styles.done : styles.notDone}>
               {item.task.length < 85
                 ? item.task
                 : item.task.slice(0, 85) + "..."}
             </Text>
-          </Pressable>
-          <Pressable onPress={() => deleteItemById(item.id)}>
-            <FontAwesome name='trash' size={34} color='#ff2424' />
-          </Pressable>
-        </View>
+            <Pressable onPress={() => deleteItemById(item.id)}>
+              <FontAwesome name='trash' size={34} color='#ff2424' />
+            </Pressable>
+          </View>
+        </Pressable>
       )}
       keyExtractor={(item) => item.id}
     />
