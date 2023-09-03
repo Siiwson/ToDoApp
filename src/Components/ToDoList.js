@@ -3,7 +3,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import React from "react";
 
 export default function ToDoList({ GlobalState, navigation }) {
-  const { toDoList, setToDoList, setChosenTask, setSelection } = GlobalState;
+  const { toDoList, setToDoList, setChosenTask } = GlobalState;
 
   const handleChooseTask = (item) => {
     setChosenTask(item);
@@ -35,13 +35,11 @@ export default function ToDoList({ GlobalState, navigation }) {
             onLongPress={() => handleMarkAsDone(item)}
             style={{ width: "90%" }}
           >
-            {item.task.length < 85 ? (
-              <Text style={item.isDone ? styles.done : styles.notDone}>
-                {item.task}
-              </Text>
-            ) : (
-              <Text>{item.task.slice(0, 85) + "..."}</Text>
-            )}
+            <Text style={item.isDone ? styles.done : styles.notDone}>
+              {item.task.length < 85
+                ? item.task
+                : item.task.slice(0, 85) + "..."}
+            </Text>
           </Pressable>
           <Pressable onPress={() => deleteItemById(item.id)}>
             <FontAwesome name='trash' size={34} color='#ff2424' />

@@ -12,7 +12,11 @@ export default function App() {
   // globalstate menagment
   const [toDoList, setToDoList] = useState([
     { id: 0, task: "task1", isDone: false },
-    { id: 1, task: "task1232323", isDone: true },
+    {
+      id: 1,
+      task: "task1232323 12312 314 12 41 24 d fsadf jhnfd snjajkndf jnfs dj",
+      isDone: true,
+    },
   ]);
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");
