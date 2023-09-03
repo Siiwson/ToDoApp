@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 export default function ChosenTask({ navigation, GlobalState }) {
-  const { chosenTask } = GlobalState;
+  const { toDoList, setToDoList, chosenTask } = GlobalState;
+
+  const deleteItemAndReturn = (id) => {
+    const filteredData = toDoList.filter((item) => item.id !== id);
+    setToDoList(filteredData);
+    navigation.navigate("Home");
+  };
 
   return (
     <View style={styles.container}>
@@ -12,6 +19,12 @@ export default function ChosenTask({ navigation, GlobalState }) {
       <View style={styles.body}>
         <Text style={styles.taskText}>{chosenTask.task}</Text>
       </View>
+      <Pressable
+        onPress={() => deleteItemAndReturn(chosenTask.id)}
+        style={styles.deleteItem}
+      >
+        <FontAwesome name='trash' size={60} color='#ff2424' />
+      </Pressable>
       <Footer navigation={navigation} />
     </View>
   );
@@ -35,5 +48,16 @@ const styles = StyleSheet.create({
   taskText: {
     fontSize: 24,
     color: "#000000",
+  },
+  deleteItem: {
+    position: "absolute",
+    bottom: 100,
+    right: 20,
+    backgroundColor: "#ededed",
+    width: 75,
+    height: 75,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 40,
   },
 });

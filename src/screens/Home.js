@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   body: {
-    flex: 8,
+    flex: 9,
     width: "100%",
     backgroundColor: "#14141415",
   },
