@@ -8,10 +8,7 @@ export default function Home({ navigation, GlobalState }) {
 
   const handleSaveTask = () => {
     const index = toDoList.length + 1;
-    setToDoList((prevState) => [
-      ...prevState,
-      { id: index, task: task, isSelected: false },
-    ]);
+    setToDoList((prevState) => [...prevState, { id: index, task: task }]);
     setTask("");
   };
 

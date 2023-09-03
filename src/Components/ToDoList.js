@@ -31,7 +31,7 @@ export default function ToDoList({ GlobalState, navigation }) {
             </Text>
           </Pressable>
           <Pressable onPress={() => deleteItemById(item.id)}>
-            <FontAwesome name='trash' size={34} color='#e80909' />
+            <FontAwesome name='trash' size={34} color='#ff2424' />
           </Pressable>
         </View>
       )}
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 1,
     },
-    shadowOpacity: 0.34,
+    shadowOpacity: 0.2,
     shadowRadius: 6.27,
     elevation: 10,
     flexDirection: "row",
