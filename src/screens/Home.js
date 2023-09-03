@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     alignItems: "center",
-    borderBottomColor: "black",
-    borderBottomWidth: 0.2,
     backgroundColor: "#ededed",
     shadowColor: "#000",
     shadowOffset: {
