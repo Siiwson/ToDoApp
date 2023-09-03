@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <View style={styles.header}>
       <Text style={styles.text}>
-        Todo <Text style={{ color: "#145bde" }}>List</Text>
+        Todo <Text style={{ color: "#145bde", fontWeight: 400 }}>List</Text>
       </Text>
     </View>
   );

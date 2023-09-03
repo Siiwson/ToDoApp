@@ -27,10 +27,9 @@ export default function Home({ navigation, GlobalState }) {
             placeholder='Add task!'
           />
           <Pressable style={styles.button} onPress={handleSaveTask}>
-            <Text>Save task</Text>
+            <Text style={{ fontWeight: 600, fontSize: 20 }}>Save task</Text>
           </Pressable>
         </View>
-
         <ToDoList GlobalState={GlobalState} navigation={navigation} />
       </View>
     </View>
@@ -47,14 +46,12 @@ const styles = StyleSheet.create({
   body: {
     flex: 8,
     width: "100%",
-    backgroundColor: "#14141410",
+    backgroundColor: "#14141415",
   },
   input: {
     backgroundColor: "white",
     padding: 15,
     marginTop: 15,
-    marginBottom: 15,
-    marginHorizontal: 16,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
@@ -64,15 +61,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
-    width: "100%",
+    width: "90%",
   },
   button: {
-    backgroundColor: "#14141450",
+    backgroundColor: "#4f87e8",
     color: "white",
-    padding: 15,
-    marginTop: 15,
-    marginBottom: 15,
-    marginRight: 16,
+    padding: 12,
+    margin: 15,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
@@ -82,10 +77,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
+    alignItems: "center",
+    width: 120,
   },
   inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomColor: "black",
+    borderBottomWidth: 0.2,
+    backgroundColor: "#ededed",
   },
   taskContainer: {
     flexDirection: "row",

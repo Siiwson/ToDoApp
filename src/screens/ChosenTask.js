@@ -20,7 +20,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fffff0",
+    backgroundColor: "#ededed",
     alignItems: "center",
     justifyContent: "center",
   },
