@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+//For generating unique task id
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 
@@ -6,7 +7,7 @@ import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
 
 export default function Home({ navigation, GlobalState }) {
-  const { toDoList, setToDoList, task, setTask } = GlobalState;
+  const { setToDoList, task, setTask } = GlobalState;
 
   const handleSaveTask = () => {
     const index = uuidv4();
@@ -17,6 +18,7 @@ export default function Home({ navigation, GlobalState }) {
   return (
     <View style={styles.container}>
       <Header />
+
       <View style={styles.body}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -29,6 +31,7 @@ export default function Home({ navigation, GlobalState }) {
             <Text style={{ fontWeight: 600, fontSize: 20 }}>Save task</Text>
           </Pressable>
         </View>
+
         <ToDoList GlobalState={GlobalState} navigation={navigation} />
       </View>
     </View>

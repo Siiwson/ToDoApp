@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import registerNNPushToken from "native-notify";
 import { StatusBar } from "expo-status-bar";
 
 import Home from "./src/screens/Home";
@@ -11,10 +10,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   // globalstate menagment
-  const [toDoList, setToDoList] = useState([
-    { id: 0, task: "task nr 1" },
-    { id: 1, task: "aha" },
-  ]);
+  const [toDoList, setToDoList] = useState([]);
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");
 
