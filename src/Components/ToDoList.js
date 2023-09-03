@@ -3,7 +3,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import React from "react";
 
 export default function ToDoList({ GlobalState, navigation }) {
-  const { toDoList, setToDoList, setChosenTask } = GlobalState;
+  const { toDoList, setToDoList, setChosenTask, setSelection } = GlobalState;
 
   const handleChooseTask = (item) => {
     setChosenTask(item);
@@ -15,6 +15,16 @@ export default function ToDoList({ GlobalState, navigation }) {
     setToDoList(filteredData);
   };
 
+  const handleMarkAsDone = (item) => {
+    const updatedList = toDoList.map((task) => {
+      if (task.id === item.id) {
+        task.isDone = !task.isDone;
+      }
+      return task;
+    });
+    setToDoList(updatedList);
+  };
+
   return (
     <FlatList
       data={toDoList}
@@ -22,13 +32,16 @@ export default function ToDoList({ GlobalState, navigation }) {
         <View style={styles.task}>
           <Pressable
             onPress={() => handleChooseTask(item)}
+            onLongPress={() => handleMarkAsDone(item)}
             style={{ width: "90%" }}
           >
-            <Text>
-              {item.task.length < 85
-                ? item.task
-                : item.task.slice(0, 85) + "..."}
-            </Text>
+            {item.task.length < 85 ? (
+              <Text style={item.isDone ? styles.done : styles.notDone}>
+                {item.task}
+              </Text>
+            ) : (
+              <Text>{item.task.slice(0, 85) + "..."}</Text>
+            )}
           </Pressable>
           <Pressable onPress={() => deleteItemById(item.id)}>
             <FontAwesome name='trash' size={34} color='#ff2424' />
@@ -58,5 +71,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  done: {
+    textDecorationLine: "line-through",
+    textDecorationStyle: "solid",
+    color: "#4f87e8",
   },
 });

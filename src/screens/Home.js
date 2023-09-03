@@ -11,7 +11,10 @@ export default function Home({ navigation, GlobalState }) {
 
   const handleSaveTask = () => {
     const index = uuidv4();
-    setToDoList((prevState) => [...prevState, { id: index, task: task }]);
+    setToDoList((prevState) => [
+      ...prevState,
+      { id: index, task: task, isDone: false },
+    ]);
     setTask("");
   };
 

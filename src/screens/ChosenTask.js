@@ -17,7 +17,9 @@ export default function ChosenTask({ navigation, GlobalState }) {
     <View style={styles.container}>
       <Header />
       <View style={styles.body}>
-        <Text style={styles.taskText}>{chosenTask.task}</Text>
+        <Text style={chosenTask.isDone ? styles.doneTask : styles.taskText}>
+          {chosenTask.task}
+        </Text>
       </View>
       <Pressable
         onPress={() => deleteItemAndReturn(chosenTask.id)}
@@ -68,5 +70,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 6.27,
     elevation: 10,
+  },
+  doneTask: {
+    textDecorationLine: "line-through",
+    textDecorationStyle: "solid",
+    color: "#4f87e8",
+    fontSize: 24,
   },
 });
