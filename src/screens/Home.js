@@ -1,4 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
 
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
@@ -7,7 +9,7 @@ export default function Home({ navigation, GlobalState }) {
   const { toDoList, setToDoList, task, setTask } = GlobalState;
 
   const handleSaveTask = () => {
-    const index = toDoList.length + 1;
+    const index = uuidv4();
     setToDoList((prevState) => [...prevState, { id: index, task: task }]);
     setTask("");
   };
