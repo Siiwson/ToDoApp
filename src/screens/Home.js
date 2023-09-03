@@ -84,8 +84,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#ededed",
   },
-  taskContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
 });
