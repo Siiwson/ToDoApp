@@ -29,7 +29,7 @@ export default function ToDoList({ GlobalState, navigation }) {
     <FlatList
       data={toDoList}
       renderItem={({ item }) => (
-        <View style={styles.task}>
+        <View style={item.isDone ? styles.taskDone : styles.task}>
           <Pressable
             onPress={() => handleChooseTask(item)}
             onLongPress={() => handleMarkAsDone(item)}
@@ -54,6 +54,24 @@ export default function ToDoList({ GlobalState, navigation }) {
 const styles = StyleSheet.create({
   task: {
     backgroundColor: "white",
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 6.27,
+    elevation: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  taskDone: {
+    backgroundColor: "#c3e0fa",
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
