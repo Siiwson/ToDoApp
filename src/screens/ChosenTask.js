@@ -19,7 +19,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
     <View style={styles.container}>
       <Header />
       <View style={styles.body}>
-        <Text>{chosenTask.task}</Text>
+        <Text style={styles.taskText}>{chosenTask.task}</Text>
       </View>
       <Footer navigation={navigation} />
     </View>
@@ -37,7 +37,13 @@ const styles = StyleSheet.create({
     flex: 8,
     width: "100%",
     alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#14141410",
+    paddingVertical: 40,
+    paddingHorizontal: 24,
+  },
+  taskText: {
+    fontSize: 24,
+    color: "#000000",
+    fontWeight: "bold",
   },
 });

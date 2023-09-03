@@ -6,7 +6,6 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-import React, { useState, useEffect } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import Header from "../Components/Header";
@@ -16,9 +15,6 @@ export default function Home({ navigation, GlobalState }) {
   const { toDoList, setToDoList, task, setTask, chosenTask, setChosenTask } =
     GlobalState;
 
-  useEffect(() => {
-    //setToDoList(prevState => [...prevState, { id: 2, task: 'task nr 2' }])
-  }, []);
   const handleSaveTask = () => {
     const index = toDoList.length + 1;
     setToDoList((prevState) => [...prevState, { id: index, task: task }]);
@@ -58,7 +54,11 @@ export default function Home({ navigation, GlobalState }) {
                 onPress={() => handleChooseTask(item)}
                 style={{ width: "90%" }}
               >
-                <Text>{item.task}</Text>
+                <Text>
+                  {item.task.length < 85
+                    ? item.task
+                    : item.task.slice(0, 85) + "..."}
+                </Text>
               </Pressable>
               <Pressable onPress={() => deleteItemById(item.id)}>
                 <FontAwesome name='trash' size={34} color='black' />
