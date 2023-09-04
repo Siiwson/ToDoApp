@@ -1,7 +1,6 @@
 # Todo List - Projekt Uniwersalne Metody Projektowania Aplikacji na Urządzenia Mobilne i Wbudowane
 
-Aplikacja służy do zapisywania rzeczy, które musimy zrobić. 
-![IMG_3247](https://github.com/Siiwson/ToDoApp/assets/72451564/7b05460e-1a3b-475c-817d-2b45c591feed)
+Aplikacja służy do zapisywania rzeczy, które musimy zrobić. ![IMG_3247](https://github.com/Siiwson/ToDoApp/assets/72451564/7b05460e-1a3b-475c-817d-2b45c591feed)
 
 ![IMG_3248](https://github.com/Siiwson/ToDoApp/assets/72451564/54b69d59-0631-4c15-9d44-d83a8e22e60f)
 
