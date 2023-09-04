@@ -2,6 +2,7 @@
 
 Aplikacja służy do zapisywania rzeczy, które musimy zrobić. Dzięki temu, nie zapomnimy o czymś ważnym takim jak np. Czymś co mieliśmy kupić.
 
+Opis działania aplikacji:
 - Na głównej stronie widzimy pole, w którym wpisujemy zadanie lub rzecz, którą mamy zrobić. 
 - Po czym klikamty niebieski przycisk "Save task".
 ![Lista](https://github.com/Siiwson/ToDoApp/assets/72451564/161395c9-d83b-494b-93be-a54936d7168b)
