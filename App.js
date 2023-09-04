@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
+import { onAuthStateChanged } from "firebase/auth";
 
 import Home from "./src/screens/Home";
 import ChosenTask from "./src/screens/ChosenTask";
+import LoginPage from "./src/screens/LoginPage";
+import { FIREBASE_AUTH } from "./Firebase";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +24,7 @@ export default function App() {
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");
   const [isSelected, setSelection] = useState(false);
+  const [user, setUser] = useState(null);
 
   const GlobalState = {
     toDoList,
@@ -33,13 +37,25 @@ export default function App() {
     setSelection,
   };
 
+  useEffect(() => {
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      setUser(user);
+    });
+  });
+
   // navigation
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Home' options={{ headerShown: false }}>
-          {(props) => <Home {...props} GlobalState={GlobalState} />}
-        </Stack.Screen>
+        {user ? (
+          <Stack.Screen name='Home' options={{ headerShown: false }}>
+            {(props) => <Home {...props} GlobalState={GlobalState} />}
+          </Stack.Screen>
+        ) : (
+          <Stack.Screen name='LoginPage' options={{ headerShown: false }}>
+            {(props) => <LoginPage {...props} GlobalState={GlobalState} />}
+          </Stack.Screen>
+        )}
         <Stack.Screen name='ChosenTask' options={{ headerShown: false }}>
           {(props) => <ChosenTask {...props} GlobalState={GlobalState} />}
         </Stack.Screen>

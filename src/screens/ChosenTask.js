@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 8,
     width: "100%",
     alignItems: "flex-start",
-    backgroundColor: "#14141410",
+    backgroundColor: "#14141405",
     paddingVertical: 40,
     paddingHorizontal: 24,
   },

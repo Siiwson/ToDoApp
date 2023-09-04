@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#14141405",
+    backgroundColor: "#ededed",
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",

@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#14141405",
     justifyContent: "center",
     alignItems: "center",
     paddingTop: Constants.statusBarHeight,
+    backgroundColor: "#ededed",
   },
   text: {
     fontSize: 50,

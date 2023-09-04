@@ -2,9 +2,11 @@ import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 //For generating unique task id
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
+import { FIREBASE_AUTH } from "../../Firebase";
 
 export default function Home({ navigation, GlobalState }) {
   const { setToDoList, task, setTask } = GlobalState;
@@ -21,7 +23,9 @@ export default function Home({ navigation, GlobalState }) {
   return (
     <View style={styles.container}>
       <Header />
-
+      <Pressable onPress={() => FIREBASE_AUTH.signOut()} style={styles.signout}>
+        <AntDesign name='close' size={40} color='black' />
+      </Pressable>
       <View style={styles.body}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -44,14 +48,13 @@ export default function Home({ navigation, GlobalState }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "##fffff0",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#ededed",
   },
   body: {
     flex: 9,
     width: "100%",
-    backgroundColor: "#14141415",
   },
   input: {
     backgroundColor: "white",
@@ -87,6 +90,10 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     alignItems: "center",
-    backgroundColor: "#ededed",
+  },
+  signout: {
+    position: "absolute",
+    top: 10,
+    right: 10,
   },
 });
