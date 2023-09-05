@@ -5,7 +5,7 @@ Aplikacja służy do zapisywania rzeczy, które musimy zrobić. Dzięki temu, ni
 Opis działania aplikacji:
 - Na głównej stronie widzimy pole, w którym wpisujemy zadanie lub rzecz, którą mamy zrobić. 
 - Po czym klikamty niebieski przycisk "Save task".
-![Lista](https://github.com/Siiwson/ToDoApp/assets/72451564/161395c9-d83b-494b-93be-a54936d7168b)
+![Lista](https://github.com/Siiwson/ToDoApp/assets/72451564/161395c9-d83b-494b-93be-a54936d7168b | width=100px)
 
 - Każde dodane zadanie jest oznaczone, jako nie zrobione. Możemy je oznaczyć jako zrobione przytrzymując przez pół sekundy. Wtedy kolor zmienia się na niebieski.
 - Naciśnięcie czerwonego kosza usuwa bezpowrotnie zapisane zadanie.
