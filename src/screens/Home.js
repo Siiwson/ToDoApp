@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Constants from "expo-constants";
 
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
@@ -95,5 +96,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
+    paddingTop: Constants.statusBarHeight,
   },
 });
