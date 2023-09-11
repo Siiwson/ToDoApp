@@ -3,10 +3,12 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
+import AntDesign from "react-native-vector-icons/AntDesign";
+
 import Header from "../Components/Header";
 import { FIREBASE_AUTH } from "../../Firebase";
 
-export default function LoginPage({ navigation, GlobalState }) {
+export default function LoginPage({ navigation, GlobalState, promptAsync }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -55,12 +57,14 @@ export default function LoginPage({ navigation, GlobalState }) {
             value={password}
           />
           <Pressable style={styles.button} onPress={handleSignIn}>
-            <Text style={{ fontWeight: 600, fontSize: 20 }}>Login</Text>
+            <Text style={styles.textButton}>Login</Text>
           </Pressable>
           <Pressable style={styles.button} onPress={handleSingUp}>
-            <Text style={{ fontWeight: 600, fontSize: 20 }}>
-              Create account
-            </Text>
+            <Text style={styles.textButton}>Create account</Text>
+          </Pressable>
+          <Pressable style={styles.buttonGoogle} onPress={() => promptAsync()}>
+            <AntDesign name='google' size={24} color='white' />
+            <Text style={styles.textButton}>Sign in with Google!</Text>
           </Pressable>
         </View>
       </View>
@@ -113,5 +117,30 @@ const styles = StyleSheet.create({
     elevation: 10,
     alignItems: "center",
     minWidth: 120,
+  },
+  buttonGoogle: {
+    backgroundColor: "#4f87e8",
+    color: "white",
+    padding: 12,
+    paddingHorizontal: 20,
+    marginTop: 15,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
+    alignItems: "center",
+    minWidth: 120,
+    flexDirection: "row",
+  },
+  textButton: {
+    fontWeight: 600,
+    fontSize: 18,
+    paddingHorizontal: 10,
+    color: "white",
   },
 });

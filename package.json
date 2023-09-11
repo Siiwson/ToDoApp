@@ -29,7 +29,12 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.10",
     "uuid": "^9.0.0",
-    "expo-splash-screen": "~0.18.2"
+    "expo-splash-screen": "~0.18.2",
+    "expo-application": "~5.1.1",
+    "expo-dev-client": "~2.2.1",
+    "@react-native-async-storage/async-storage": "1.17.11",
+    "expo-auth-session": "~4.0.3",
+    "expo-crypto": "~12.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
