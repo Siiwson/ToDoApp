@@ -4,6 +4,7 @@ import Constants from "expo-constants";
 import { COLORS } from "../../Colors";
 
 export default function Header() {
+  //Color theme
   const colorScheme = useColorScheme();
   const themeTextStyle =
     colorScheme === "light" ? styles.lightThemeText : styles.darkThemeText;

@@ -19,7 +19,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // globalstate menagment
+  //Globalstate menagment
   const [toDoList, setToDoList] = useState([]);
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");
@@ -27,6 +27,8 @@ export default function App() {
   const [uid, setUID] = useState(null);
   const [loading, setLoading] = useState(false);
   const [accesToken, setAccesToken] = useState(null);
+
+  //Google Auth
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId:
       "817066145188-qtsvl8hrtf5fts24r5inpcnpgjaqr3hl.apps.googleusercontent.com",
@@ -62,6 +64,7 @@ export default function App() {
     orderBy("timestamp", "asc")
   );
 
+  //Read task from firebase
   useEffect(() => {
     onSnapshot(q, (snapshot) => {
       setToDoList(
@@ -71,9 +74,10 @@ export default function App() {
         }))
       );
     });
-    console.log(uid);
+    console.log(uid); //display actual user id
   }, [task, loading]);
 
+  //Global state
   const GlobalState = {
     toDoList,
     setToDoList,

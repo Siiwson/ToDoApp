@@ -28,8 +28,10 @@ export default function Home({ navigation, GlobalState }) {
   const themeButtonStyle =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
 
+  //Global State
   const { task, setTask, uid } = GlobalState;
 
+  //Save task to firebase, and close keyboard
   const handleSaveTask = (e) => {
     e.preventDefault();
     addDoc(collection(FIREBASE_DB, "users/", uid, "/todos"), {

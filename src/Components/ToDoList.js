@@ -13,31 +13,32 @@ import { FIREBASE_DB } from "../../Firebase";
 import { COLORS } from "../../Colors";
 
 export default function ToDoList({ GlobalState, navigation }) {
+  //Color theme
   const colorScheme = useColorScheme();
   const themeTextStyle =
     colorScheme === "light" ? styles.lightThemeText : styles.darkThemeText;
-  const themeContainerStyle =
-    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
   const themeInputStyle =
     colorScheme === "light" ? styles.lightInput : styles.darkInput;
   const themeDoneInputStyle =
     colorScheme === "light" ? styles.lightDoneInput : styles.darkDoneInput;
-  const themeButtonStyle =
-    colorScheme === "light" ? styles.lightButton : styles.darkButton;
 
+  //Global State
   const { toDoList, setChosenTask, uid } = GlobalState;
 
+  //Chose task to read all note
   const handleChooseTask = (item) => {
     setChosenTask(item);
     navigation.navigate("ChosenTask");
   };
 
+  //Mark task as done
   const handleMarkAsDone = (item) => {
     updateDoc(doc(FIREBASE_DB, "users/", uid, "/todos", item.id), {
       isDone: !item.item.isDone,
     });
   };
 
+  //Delete task
   const handleDelete = (item) => {
     deleteDoc(doc(FIREBASE_DB, "users/", uid, "/todos", item.id));
   };
@@ -114,18 +115,6 @@ const styles = StyleSheet.create({
   },
   darkThemeText: {
     color: COLORS.DarkText,
-  },
-  lightButton: {
-    backgroundColor: COLORS.lightButton,
-  },
-  darkButton: {
-    backgroundColor: COLORS.darkButton,
-  },
-  lightContainer: {
-    backgroundColor: COLORS.LightBackground,
-  },
-  darkContainer: {
-    backgroundColor: COLORS.DarkBackground,
   },
   lightDoneInput: {
     backgroundColor: COLORS.taskDoneLight,

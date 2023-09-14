@@ -29,12 +29,17 @@ export default function LoginPage({ GlobalState, promptAsync }) {
   const themeButtonStyle =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
 
+  //Use states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const auth = FIREBASE_AUTH;
+  //Global states
   const { setLoading, setUID } = GlobalState;
 
+  //Firebase
+  const auth = FIREBASE_AUTH;
+
+  //Sign In using email and password
   const handleSignIn = async () => {
     setLoading(true);
     try {
@@ -45,6 +50,7 @@ export default function LoginPage({ GlobalState, promptAsync }) {
     setLoading(false);
   };
 
+  //Sign Up using email and password
   const handleSingUp = async () => {
     setLoading(true);
     try {

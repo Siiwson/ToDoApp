@@ -25,8 +25,10 @@ export default function ChosenTask({ navigation, GlobalState }) {
   const themeBody =
     colorScheme === "light" ? styles.lightBody : styles.darkBody;
 
+  //Global State
   const { chosenTask, uid } = GlobalState;
 
+  //Delete task and back to main page
   const deleteItemAndReturn = (id) => {
     deleteDoc(doc(FIREBASE_DB, "users/" + uid + "/todos", id));
     navigation.navigate("Home");
