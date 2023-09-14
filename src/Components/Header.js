@@ -1,12 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useColorScheme } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
 import { COLORS } from "../../Colors";
 
 export default function Header() {
+  const colorScheme = useColorScheme();
+  const themeTextStyle =
+    colorScheme === "light" ? styles.lightThemeText : styles.darkThemeText;
+  const themeHeaderStyle =
+    colorScheme === "light" ? styles.lightHeader : styles.darkHeader;
+
   return (
-    <View style={styles.header}>
-      <Text style={styles.text}>
+    <View style={[styles.header, themeHeaderStyle]}>
+      <Text style={[styles.text, themeTextStyle]}>
         Todo{" "}
         <Text style={{ color: COLORS.listColor, fontWeight: 400 }}>List</Text>
       </Text>
@@ -21,11 +27,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: COLORS.background,
+  },
+  lightHeader: {
+    backgroundColor: COLORS.LightBackground,
+  },
+  darkHeader: {
+    backgroundColor: COLORS.DarkBackground,
+  },
+  lightThemeText: {
+    color: COLORS.LightText,
+  },
+  darkThemeText: {
+    color: COLORS.DarkText,
   },
   text: {
     fontSize: 50,
     fontWeight: "bold",
-    color: COLORS.text,
   },
 });

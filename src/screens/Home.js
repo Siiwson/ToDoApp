@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  useColorScheme,
+} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 import { Keyboard } from "react-native";
@@ -10,6 +17,17 @@ import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export default function Home({ navigation, GlobalState }) {
+  //Color theme
+  const colorScheme = useColorScheme();
+  const themeTextStyle =
+    colorScheme === "light" ? styles.lightThemeText : styles.darkThemeText;
+  const themeContainerStyle =
+    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
+  const themeInputStyle =
+    colorScheme === "light" ? styles.lightInput : styles.darkInput;
+  const themeButtonStyle =
+    colorScheme === "light" ? styles.lightButton : styles.darkButton;
+
   const { task, setTask, uid } = GlobalState;
 
   const handleSaveTask = (e) => {
@@ -24,21 +42,30 @@ export default function Home({ navigation, GlobalState }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themeContainerStyle]}>
       <Header />
       <Pressable onPress={() => FIREBASE_AUTH.signOut()} style={styles.signout}>
-        <AntDesign name='close' size={40} color={COLORS.black} />
+        <AntDesign
+          name='close'
+          size={40}
+          color={colorScheme === "light" ? COLORS.LightText : COLORS.DarkText}
+        />
       </Pressable>
       <View style={styles.body}>
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.input}
+            style={[styles.input, themeInputStyle]}
             onChangeText={setTask}
             value={task}
             placeholder='Add task!'
           />
-          <Pressable style={styles.button} onPress={handleSaveTask}>
-            <Text style={{ fontWeight: 600, fontSize: 20 }}>Save task</Text>
+          <Pressable
+            style={[styles.button, themeButtonStyle]}
+            onPress={handleSaveTask}
+          >
+            <Text style={[{ fontWeight: 600, fontSize: 20 }, themeTextStyle]}>
+              Save task
+            </Text>
           </Pressable>
         </View>
 
@@ -53,14 +80,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.background,
   },
   body: {
     flex: 9,
     width: "100%",
   },
   input: {
-    backgroundColor: COLORS.white,
     padding: 15,
     marginTop: 15,
     borderRadius: 10,
@@ -75,8 +100,6 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   button: {
-    backgroundColor: COLORS.button,
-    color: "white",
     padding: 12,
     margin: 15,
     borderRadius: 10,
@@ -99,5 +122,31 @@ const styles = StyleSheet.create({
     top: 10,
     right: 10,
     paddingTop: Constants.statusBarHeight,
+  },
+  lightInput: {
+    backgroundColor: COLORS.white,
+    color: COLORS.black,
+  },
+  darkInput: {
+    backgroundColor: COLORS.LightText,
+    color: COLORS.white,
+  },
+  lightThemeText: {
+    color: COLORS.LightText,
+  },
+  darkThemeText: {
+    color: COLORS.DarkText,
+  },
+  lightButton: {
+    backgroundColor: COLORS.lightButton,
+  },
+  darkButton: {
+    backgroundColor: COLORS.darkButton,
+  },
+  lightContainer: {
+    backgroundColor: COLORS.LightBackground,
+  },
+  darkContainer: {
+    backgroundColor: COLORS.DarkBackground,
   },
 });

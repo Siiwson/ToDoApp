@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  useColorScheme,
+} from "react-native";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -11,6 +18,17 @@ import { setDoc, doc } from "firebase/firestore";
 import { COLORS } from "../../Colors";
 
 export default function LoginPage({ GlobalState, promptAsync }) {
+  //Color theme
+  const colorScheme = useColorScheme();
+  const themeTextStyle =
+    colorScheme === "light" ? styles.lightThemeText : styles.darkThemeText;
+  const themeContainerStyle =
+    colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
+  const themeInputStyle =
+    colorScheme === "light" ? styles.lightInput : styles.darkInput;
+  const themeButtonStyle =
+    colorScheme === "light" ? styles.lightButton : styles.darkButton;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -44,34 +62,55 @@ export default function LoginPage({ GlobalState, promptAsync }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themeContainerStyle]}>
       <Header />
       <View style={styles.body}>
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.input}
+            style={[styles.input, themeInputStyle]}
             placeholder='E-mail'
+            placeholderTextColor={themeTextStyle}
             autoCapitalize='none'
             onChangeText={(text) => setEmail(text)}
             value={email}
           />
           <TextInput
-            style={styles.input}
+            style={[styles.input, themeInputStyle]}
             placeholder='Password'
+            placeholderTextColor={themeTextStyle}
             autoCapitalize='none'
             secureTextEntry={true}
             onChangeText={(text) => setPassword(text)}
             value={password}
           />
-          <Pressable style={styles.button} onPress={handleSignIn}>
-            <Text style={styles.textButton}>Login</Text>
+          <Pressable
+            style={[styles.button, themeButtonStyle]}
+            onPress={handleSignIn}
+          >
+            <Text style={[styles.textButton, themeTextStyle]}>Login</Text>
           </Pressable>
-          <Pressable style={styles.button} onPress={handleSingUp}>
-            <Text style={styles.textButton}>Create account</Text>
+          <Pressable
+            style={[styles.button, themeButtonStyle]}
+            onPress={handleSingUp}
+          >
+            <Text style={[styles.textButton, themeTextStyle]}>
+              Create account
+            </Text>
           </Pressable>
-          <Pressable style={styles.buttonGoogle} onPress={() => promptAsync()}>
-            <AntDesign name='google' size={24} color={COLORS.white} />
-            <Text style={styles.textButton}>Sign in with Google!</Text>
+          <Pressable
+            style={[styles.button, styles.buttonGoogle, themeButtonStyle]}
+            onPress={() => promptAsync()}
+          >
+            <AntDesign
+              name='google'
+              size={24}
+              color={
+                colorScheme == "light" ? COLORS.LightText : COLORS.DarkText
+              }
+            />
+            <Text style={[styles.textButton, themeTextStyle]}>
+              Sign in with Google!
+            </Text>
           </Pressable>
         </View>
       </View>
@@ -84,7 +123,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.background,
   },
   body: {
     flex: 3,
@@ -94,7 +132,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    backgroundColor: COLORS.white,
     padding: 15,
     marginTop: 15,
     borderRadius: 10,
@@ -106,11 +143,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 10,
-    width: "50%",
+    width: "70%",
   },
   button: {
-    backgroundColor: COLORS.button,
-    color: COLORS.white,
     padding: 12,
     marginTop: 15,
     borderRadius: 10,
@@ -126,28 +161,37 @@ const styles = StyleSheet.create({
     minWidth: 120,
   },
   buttonGoogle: {
-    backgroundColor: COLORS.button,
-    color: COLORS.white,
-    padding: 12,
-    paddingHorizontal: 20,
-    marginTop: 15,
-    borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
-    alignItems: "center",
-    minWidth: 120,
     flexDirection: "row",
   },
   textButton: {
     fontWeight: 600,
     fontSize: 18,
     paddingHorizontal: 10,
+  },
+  lightInput: {
+    backgroundColor: COLORS.white,
+    color: COLORS.black,
+  },
+  darkInput: {
+    backgroundColor: COLORS.LightText,
     color: COLORS.white,
+  },
+  lightThemeText: {
+    color: COLORS.LightText,
+  },
+  darkThemeText: {
+    color: COLORS.DarkText,
+  },
+  lightButton: {
+    backgroundColor: COLORS.lightButton,
+  },
+  darkButton: {
+    backgroundColor: COLORS.darkButton,
+  },
+  lightContainer: {
+    backgroundColor: COLORS.LightBackground,
+  },
+  darkContainer: {
+    backgroundColor: COLORS.DarkBackground,
   },
 });
