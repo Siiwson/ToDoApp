@@ -3,6 +3,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import React from "react";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { FIREBASE_DB } from "../../Firebase";
+import { COLORS } from "../../Colors";
 
 export default function ToDoList({ GlobalState, navigation }) {
   const { toDoList, setChosenTask, uid } = GlobalState;
@@ -37,7 +38,7 @@ export default function ToDoList({ GlobalState, navigation }) {
                 : item.item.task.slice(0, 45) + "..."}
             </Text>
             <Pressable onPress={() => handleDelete(item)}>
-              <FontAwesome name='trash' size={34} color='#ff2424' />
+              <FontAwesome name='trash' size={34} color={COLORS.trash} />
             </Pressable>
           </View>
         </Pressable>
@@ -49,12 +50,12 @@ export default function ToDoList({ GlobalState, navigation }) {
 
 const styles = StyleSheet.create({
   task: {
-    backgroundColor: "white",
+    backgroundColor: COLORS.background,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 1,
@@ -67,12 +68,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   taskDone: {
-    backgroundColor: "#c3e0fa",
+    backgroundColor: COLORS.taskDone,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 1,
@@ -87,6 +88,6 @@ const styles = StyleSheet.create({
   done: {
     textDecorationLine: "line-through",
     textDecorationStyle: "solid",
-    color: "#4f87e8",
+    color: COLORS.listColor,
   },
 });

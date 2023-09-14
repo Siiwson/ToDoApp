@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { doc, deleteDoc } from "firebase/firestore";
 import { FIREBASE_DB } from "../../Firebase";
+import { COLORS } from "../../Colors";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -28,7 +29,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
         onPress={() => deleteItemAndReturn(chosenTask.id)}
         style={styles.deleteItem}
       >
-        <FontAwesome name='trash' size={50} color='#ff2424' />
+        <FontAwesome name='trash' size={50} color={COLORS.trash} />
       </Pressable>
       <Footer navigation={navigation} />
     </View>
@@ -38,7 +39,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ededed",
+    backgroundColor: COLORS.background,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -46,26 +47,26 @@ const styles = StyleSheet.create({
     flex: 8,
     width: "100%",
     alignItems: "flex-start",
-    backgroundColor: "#14141405",
+    backgroundColor: COLORS.backgroundDarker,
     paddingVertical: 40,
     paddingHorizontal: 24,
   },
   taskText: {
     fontSize: 24,
-    color: "#000000",
+    color: COLORS.text,
   },
   deleteItem: {
     zIndex: 1,
     position: "absolute",
     bottom: 45,
     right: 20,
-    backgroundColor: "#ededed",
+    backgroundColor: COLORS.background,
     width: 75,
     height: 75,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 40,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 1,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   doneTask: {
     textDecorationLine: "line-through",
     textDecorationStyle: "solid",
-    color: "#4f87e8",
+    color: COLORS.button,
     fontSize: 24,
   },
 });

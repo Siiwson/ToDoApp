@@ -8,12 +8,13 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Header from "../Components/Header";
 import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import { setDoc, doc } from "firebase/firestore";
+import { COLORS } from "../../Colors";
 
 export default function LoginPage({ GlobalState, promptAsync }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const auth = FIREBASE_AUTH;
 
+  const auth = FIREBASE_AUTH;
   const { setLoading, setUID } = GlobalState;
 
   const handleSignIn = async () => {
@@ -68,11 +69,8 @@ export default function LoginPage({ GlobalState, promptAsync }) {
           <Pressable style={styles.button} onPress={handleSingUp}>
             <Text style={styles.textButton}>Create account</Text>
           </Pressable>
-          <Pressable
-            style={styles.buttonGoogle}
-            onPress={() => promptAsync({ useProxy: true, showInRecents: true })}
-          >
-            <AntDesign name='google' size={24} color='white' />
+          <Pressable style={styles.buttonGoogle} onPress={() => promptAsync()}>
+            <AntDesign name='google' size={24} color={COLORS.white} />
             <Text style={styles.textButton}>Sign in with Google!</Text>
           </Pressable>
         </View>
@@ -86,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ededed",
+    backgroundColor: COLORS.background,
   },
   body: {
     flex: 3,
@@ -96,11 +94,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
     padding: 15,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -111,12 +109,12 @@ const styles = StyleSheet.create({
     width: "50%",
   },
   button: {
-    backgroundColor: "#4f87e8",
-    color: "white",
+    backgroundColor: COLORS.button,
+    color: COLORS.white,
     padding: 12,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -128,13 +126,13 @@ const styles = StyleSheet.create({
     minWidth: 120,
   },
   buttonGoogle: {
-    backgroundColor: "#4f87e8",
-    color: "white",
+    backgroundColor: COLORS.button,
+    color: COLORS.white,
     padding: 12,
     paddingHorizontal: 20,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -150,6 +148,6 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 18,
     paddingHorizontal: 10,
-    color: "white",
+    color: COLORS.white,
   },
 });

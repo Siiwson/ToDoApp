@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
+import { COLORS } from "../../Colors";
 
 export default function Header() {
   return (
     <View style={styles.header}>
       <Text style={styles.text}>
-        Todo <Text style={{ color: "#145bde", fontWeight: 400 }}>List</Text>
+        Todo{" "}
+        <Text style={{ color: COLORS.listColor, fontWeight: 400 }}>List</Text>
       </Text>
     </View>
   );
@@ -19,11 +21,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#ededed",
+    backgroundColor: COLORS.background,
   },
   text: {
     fontSize: 50,
     fontWeight: "bold",
-    color: "#141414",
+    color: COLORS.text,
   },
 });

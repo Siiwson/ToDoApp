@@ -19,14 +19,13 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-// globalstate menagment
+  // globalstate menagment
   const [toDoList, setToDoList] = useState([]);
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");
   const [user, setUser] = useState(null);
   const [uid, setUID] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [accesToken, setAccesToken] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId:

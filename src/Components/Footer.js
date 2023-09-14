@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { COLORS } from "../../Colors";
 
 export default function Footer({ navigation }) {
   return (
@@ -8,7 +9,7 @@ export default function Footer({ navigation }) {
       <AntDesign
         name='home'
         size={40}
-        color='#141414'
+        color={COLORS.text}
         onPress={() => navigation.navigate("Home")}
       />
     </View>
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#ededed",
+    backgroundColor: COLORS.background,
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
@@ -27,6 +28,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 50,
     fontWeight: "bold",
-    color: "#141414",
+    color: COLORS.text,
   },
 });

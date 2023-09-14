@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 import { Keyboard } from "react-native";
+import { COLORS } from "../../Colors";
 
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
@@ -26,7 +27,7 @@ export default function Home({ navigation, GlobalState }) {
     <View style={styles.container}>
       <Header />
       <Pressable onPress={() => FIREBASE_AUTH.signOut()} style={styles.signout}>
-        <AntDesign name='close' size={40} color='black' />
+        <AntDesign name='close' size={40} color={COLORS.black} />
       </Pressable>
       <View style={styles.body}>
         <View style={styles.inputContainer}>
@@ -52,18 +53,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ededed",
+    backgroundColor: COLORS.background,
   },
   body: {
     flex: 9,
     width: "100%",
   },
   input: {
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
     padding: 15,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -74,12 +75,12 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   button: {
-    backgroundColor: "#4f87e8",
+    backgroundColor: COLORS.button,
     color: "white",
     padding: 12,
     margin: 15,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: COLORS.black,
     shadowOffset: {
       width: 0,
       height: 5,
