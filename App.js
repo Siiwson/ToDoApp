@@ -74,7 +74,7 @@ export default function App() {
       );
     });
     console.log(uid);
-  }, [task] || [loading]);
+  }, [task, loading]);
 
   const GlobalState = {
     toDoList,

@@ -32,9 +32,9 @@ export default function ToDoList({ GlobalState, navigation }) {
         >
           <View style={item.item.isDone ? styles.taskDone : styles.task}>
             <Text style={item.item.isDone ? styles.done : styles.notDone}>
-              {item.item.task.length < 85
+              {item.item.task.length < 45
                 ? item.item.task
-                : item.item.task.slice(0, 85) + "..."}
+                : item.item.task.slice(0, 45) + "..."}
             </Text>
             <Pressable onPress={() => handleDelete(item)}>
               <FontAwesome name='trash' size={34} color='#ff2424' />
