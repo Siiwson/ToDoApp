@@ -18,7 +18,9 @@ export default function ChosenTask({ navigation, GlobalState }) {
     <View style={styles.container}>
       <Header />
       <View style={styles.body}>
-        <Text style={chosenTask.isDone ? styles.doneTask : styles.taskText}>
+        <Text
+          style={chosenTask.item.isDone ? styles.doneTask : styles.taskText}
+        >
           {chosenTask.item.task}
         </Text>
       </View>

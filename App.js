@@ -26,6 +26,7 @@ export default function App() {
   const [isSelected, setSelection] = useState(false);
   const [user, setUser] = useState(null);
   const [uid, setUID] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [accesToken, setAccesToken] = useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -73,7 +74,7 @@ export default function App() {
       );
     });
     console.log(uid);
-  }, [task]);
+  }, [task] || [loading]);
 
   const GlobalState = {
     toDoList,
@@ -86,6 +87,8 @@ export default function App() {
     setSelection,
     uid,
     setUID,
+    loading,
+    setLoading,
   };
   // navigation
   return (

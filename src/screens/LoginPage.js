@@ -18,8 +18,9 @@ import {
 export default function LoginPage({ navigation, GlobalState, promptAsync }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
+
+  const { loading, setLoading } = GlobalState;
 
   const handleSignIn = async () => {
     setLoading(true);
