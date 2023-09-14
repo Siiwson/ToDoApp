@@ -1,23 +1,22 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
-//For generating unique task id
-import "react-native-get-random-values";
-import { v4 as uuidv4 } from "uuid";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
-import { FIREBASE_AUTH } from "../../Firebase";
+import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 export default function Home({ navigation, GlobalState }) {
-  const { setToDoList, task, setTask } = GlobalState;
+  const { task, setTask, uid } = GlobalState;
 
-  const handleSaveTask = () => {
-    const index = uuidv4();
-    setToDoList((prevState) => [
-      ...prevState,
-      { id: index, task: task, isDone: false },
-    ]);
+  const handleSaveTask = (e) => {
+    e.preventDefault();
+    addDoc(collection(FIREBASE_DB, "users/", uid, "/todos"), {
+      task: task,
+      isDone: false,
+      timestamp: serverTimestamp(),
+    });
     setTask("");
   };
 

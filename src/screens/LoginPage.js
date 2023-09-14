@@ -6,7 +6,14 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 import Header from "../Components/Header";
-import { FIREBASE_AUTH } from "../../Firebase";
+import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 
 export default function LoginPage({ navigation, GlobalState, promptAsync }) {
   const [email, setEmail] = useState("");
@@ -18,7 +25,6 @@ export default function LoginPage({ navigation, GlobalState, promptAsync }) {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      //navigation.navigate("Home");
     } catch (error) {
       alert(error);
     }
@@ -28,8 +34,13 @@ export default function LoginPage({ navigation, GlobalState, promptAsync }) {
   const handleSingUp = async () => {
     setLoading(true);
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      //navigation.navigate("Home");
+      await createUserWithEmailAndPassword(auth, email, password).then(() => {
+        const userUID = auth.currentUser;
+        setDoc(doc(FIREBASE_DB, "users", userUID.uid), {
+          text: "Welcome",
+        });
+        GlobalState.setUID(userUID);
+      });
     } catch (error) {
       alert(error);
     }
@@ -62,7 +73,10 @@ export default function LoginPage({ navigation, GlobalState, promptAsync }) {
           <Pressable style={styles.button} onPress={handleSingUp}>
             <Text style={styles.textButton}>Create account</Text>
           </Pressable>
-          <Pressable style={styles.buttonGoogle} onPress={() => promptAsync()}>
+          <Pressable
+            style={styles.buttonGoogle}
+            onPress={() => promptAsync({ useProxy: true, showInRecents: true })}
+          >
             <AntDesign name='google' size={24} color='white' />
             <Text style={styles.textButton}>Sign in with Google!</Text>
           </Pressable>

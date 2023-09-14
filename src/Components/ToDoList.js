@@ -1,28 +1,25 @@
 import { StyleSheet, Text, View, Pressable, FlatList } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import React from "react";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { FIREBASE_DB } from "../../Firebase";
 
 export default function ToDoList({ GlobalState, navigation }) {
-  const { toDoList, setToDoList, setChosenTask } = GlobalState;
+  const { toDoList, setChosenTask, uid } = GlobalState;
 
   const handleChooseTask = (item) => {
     setChosenTask(item);
     navigation.navigate("ChosenTask");
   };
 
-  const deleteItemById = (id) => {
-    const filteredData = toDoList.filter((item) => item.id !== id);
-    setToDoList(filteredData);
+  const handleMarkAsDone = (item) => {
+    updateDoc(doc(FIREBASE_DB, "users/", uid, "/todos", item.id), {
+      isDone: !item.item.isDone,
+    });
   };
 
-  const handleMarkAsDone = (item) => {
-    const updatedList = toDoList.map((task) => {
-      if (task.id === item.id) {
-        task.isDone = !task.isDone;
-      }
-      return task;
-    });
-    setToDoList(updatedList);
+  const handleDelete = (item) => {
+    deleteDoc(doc(FIREBASE_DB, "users/", uid, "/todos", item.id));
   };
 
   return (
@@ -33,13 +30,13 @@ export default function ToDoList({ GlobalState, navigation }) {
           onPress={() => handleChooseTask(item)}
           onLongPress={() => handleMarkAsDone(item)}
         >
-          <View style={item.isDone ? styles.taskDone : styles.task}>
-            <Text style={item.isDone ? styles.done : styles.notDone}>
-              {item.task.length < 85
-                ? item.task
-                : item.task.slice(0, 85) + "..."}
+          <View style={item.item.isDone ? styles.taskDone : styles.task}>
+            <Text style={item.item.isDone ? styles.done : styles.notDone}>
+              {item.item.task.length < 85
+                ? item.item.task
+                : item.item.task.slice(0, 85) + "..."}
             </Text>
-            <Pressable onPress={() => deleteItemById(item.id)}>
+            <Pressable onPress={() => handleDelete(item)}>
               <FontAwesome name='trash' size={34} color='#ff2424' />
             </Pressable>
           </View>

@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { doc, deleteDoc } from "firebase/firestore";
+import { FIREBASE_DB } from "../../Firebase";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 export default function ChosenTask({ navigation, GlobalState }) {
-  const { toDoList, setToDoList, chosenTask } = GlobalState;
+  const { chosenTask, uid } = GlobalState;
 
   const deleteItemAndReturn = (id) => {
-    const filteredData = toDoList.filter((item) => item.id !== id);
-    setToDoList(filteredData);
+    deleteDoc(doc(FIREBASE_DB, "users/" + uid + "/todos", id));
     navigation.navigate("Home");
   };
 
@@ -18,7 +19,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
       <Header />
       <View style={styles.body}>
         <Text style={chosenTask.isDone ? styles.doneTask : styles.taskText}>
-          {chosenTask.task}
+          {chosenTask.item.task}
         </Text>
       </View>
       <Pressable
