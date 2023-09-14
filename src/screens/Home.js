@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
+import { Keyboard } from "react-native";
 
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
@@ -18,6 +19,7 @@ export default function Home({ navigation, GlobalState }) {
       timestamp: serverTimestamp(),
     });
     setTask("");
+    Keyboard.dismiss();
   };
 
   return (

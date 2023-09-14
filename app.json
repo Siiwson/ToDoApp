@@ -15,7 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+            "supportsTablet": true,
       "bundleIdentifier": "com.siiwson.todoumpa",
       "infoPlist": {
         "CFBundleURLTypes": [
@@ -28,7 +28,7 @@
       }
     },
     "android": {
-      "adaptiveIcon": {
+            "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
@@ -43,5 +43,5 @@
       }
     },
     "scheme": "com.siiwson.todoumpa"
-  }
+}
 }

@@ -7,20 +7,14 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 import Header from "../Components/Header";
 import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
-import {
-  collection,
-  addDoc,
-  onSnapshot,
-  setDoc,
-  doc,
-} from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 
-export default function LoginPage({ navigation, GlobalState, promptAsync }) {
+export default function LoginPage({ GlobalState, promptAsync }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = FIREBASE_AUTH;
 
-  const { loading, setLoading } = GlobalState;
+  const { setLoading, setUID } = GlobalState;
 
   const handleSignIn = async () => {
     setLoading(true);
@@ -40,7 +34,7 @@ export default function LoginPage({ navigation, GlobalState, promptAsync }) {
         setDoc(doc(FIREBASE_DB, "users", userUID.uid), {
           text: "Welcome",
         });
-        GlobalState.setUID(userUID);
+        setUID(userUID);
       });
     } catch (error) {
       alert(error);
