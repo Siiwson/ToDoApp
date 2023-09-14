@@ -29,7 +29,7 @@ export default function LoginPage({ GlobalState, promptAsync }) {
   const themeButtonStyle =
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
 
-  //Use states
+  //Use states for login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

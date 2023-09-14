@@ -1,4 +1,6 @@
 export const COLORS = {
+  //All colors used in app
+
   white: "#fff",
   black: "#000",
   listColor: "#145bde",
