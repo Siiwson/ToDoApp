@@ -24,6 +24,7 @@ export default function ChosenTask({ navigation, GlobalState }) {
     colorScheme === "light" ? styles.lightInput : styles.darkInput;
   const themeBody =
     colorScheme === "light" ? styles.lightBody : styles.darkBody;
+  const themTime = colorScheme === "light" ? styles.lightTime : styles.darkTime;
 
   //Global State
   const { chosenTask, uid } = GlobalState;
@@ -38,6 +39,15 @@ export default function ChosenTask({ navigation, GlobalState }) {
     <View style={[styles.container, themeContainerStyle]}>
       <Header />
       <View style={[styles.body, themeBody]}>
+        <View style={styles.timeContainer}>
+          <Text style={[styles.timeText, themTime]}>
+            {chosenTask.item.timestamp
+              ? chosenTask.item.timestamp.toDate().toDateString() +
+                " at " +
+                chosenTask.item.timestamp.toDate().toLocaleTimeString()
+              : null}
+          </Text>
+        </View>
         <Text style={chosenTask.item.isDone ? styles.doneTask : themeTextStyle}>
           {chosenTask.item.task}
         </Text>
@@ -66,8 +76,8 @@ const styles = StyleSheet.create({
   body: {
     flex: 8,
     width: "100%",
-    alignItems: "flex-start",
-    paddingVertical: 40,
+    paddingBottom: 40,
+    paddingTop: 15,
     paddingHorizontal: 24,
   },
   deleteItem: {
@@ -82,12 +92,12 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     shadowColor: COLORS.black,
     shadowOffset: {
-      width: 0,
+      width: 1,
       height: 1,
     },
     shadowOpacity: 0.2,
     shadowRadius: 6.27,
-    elevation: 10,
+    elevation: 3,
   },
   doneTask: {
     textDecorationLine: "line-through",
@@ -122,5 +132,19 @@ const styles = StyleSheet.create({
   },
   darkBody: {
     backgroundColor: COLORS.DarkBackground5percent,
+  },
+  timeText: {
+    fontSize: 12,
+  },
+  lightTime: {
+    color: COLORS.LightText,
+  },
+  darkTime: {
+    color: COLORS.timeText,
+  },
+  timeContainer: {
+    marginBottom: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

@@ -57,11 +57,18 @@ export default function ToDoList({ GlobalState, navigation }) {
               item.item.isDone ? themeDoneInputStyle : themeInputStyle,
             ]}
           >
-            <Text style={item.item.isDone ? styles.done : themeTextStyle}>
-              {item.item.task.length < 45
-                ? item.item.task
-                : item.item.task.slice(0, 45) + "..."}
-            </Text>
+            <View>
+              <Text style={item.item.isDone ? styles.done : themeTextStyle}>
+                {item.item.task.length < 35
+                  ? item.item.task
+                  : item.item.task.slice(0, 35) + "..."}
+              </Text>
+              <Text style={styles.timeText}>
+                {item.item.timestamp
+                  ? item.item.timestamp.toDate().toDateString()
+                  : null}
+              </Text>
+            </View>
             <Pressable onPress={() => handleDelete(item)}>
               <FontAwesome
                 name='trash'
@@ -85,14 +92,6 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 6.27,
-    elevation: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -121,5 +120,9 @@ const styles = StyleSheet.create({
   },
   darkDoneInput: {
     backgroundColor: COLORS.taskDoneDark,
+  },
+  timeText: {
+    fontSize: 12,
+    color: COLORS.timeText,
   },
 });

@@ -141,28 +141,14 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 10,
     width: "70%",
+    fontSize: 18,
   },
   button: {
     padding: 12,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
+    borderWidth: 1,
     alignItems: "center",
     minWidth: 120,
   },
@@ -190,9 +176,11 @@ const styles = StyleSheet.create({
   },
   lightButton: {
     backgroundColor: COLORS.lightButton,
+    borderColor: COLORS.LightText,
   },
   darkButton: {
     backgroundColor: COLORS.darkButton,
+    borderColor: COLORS.DarkText,
   },
   lightContainer: {
     backgroundColor: COLORS.LightBackground,

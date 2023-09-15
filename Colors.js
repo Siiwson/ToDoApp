@@ -16,4 +16,5 @@ export const COLORS = {
   taskDoneDark: "#0a2a5c",
   lightTrash: "#c70e1a",
   darkTrash: "#d93843",
+  timeText: "#a0a0a0",
 };

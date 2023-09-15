@@ -91,30 +91,17 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 15,
     borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
     width: "90%",
+    borderWidth: 1,
+    fontSize: 18,
   },
   button: {
     padding: 12,
     margin: 15,
     borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
-    elevation: 10,
     alignItems: "center",
     width: 120,
+    borderWidth: 1,
   },
   inputContainer: {
     alignItems: "center",
@@ -128,10 +115,12 @@ const styles = StyleSheet.create({
   lightInput: {
     backgroundColor: COLORS.white,
     color: COLORS.black,
+    borderColor: COLORS.LightText,
   },
   darkInput: {
     backgroundColor: COLORS.LightText,
     color: COLORS.white,
+    borderColor: COLORS.DarkText,
   },
   lightThemeText: {
     color: COLORS.LightText,
@@ -141,9 +130,11 @@ const styles = StyleSheet.create({
   },
   lightButton: {
     backgroundColor: COLORS.lightButton,
+    borderColor: COLORS.LightText,
   },
   darkButton: {
     backgroundColor: COLORS.darkButton,
+    borderColor: COLORS.DarkText,
   },
   lightContainer: {
     backgroundColor: COLORS.LightBackground,
