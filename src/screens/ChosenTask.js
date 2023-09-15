@@ -4,6 +4,7 @@ import {
   View,
   Pressable,
   useColorScheme,
+  Alert,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -31,17 +32,28 @@ export default function ChosenTask({ navigation, GlobalState }) {
 
   //Delete task and back to main page
   const deleteItemAndReturn = (id) => {
-    deleteDoc(
-      doc(
-        FIREBASE_DB,
-        "users/",
-        uid,
-        "/listOfTodos/",
-        chosenTodos.id,
-        "/todos",
-        id
-      )
-    );
+    Alert.alert("Delete task", "Are you sure you want to delete this task?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        onPress: () =>
+          deleteDoc(
+            doc(
+              FIREBASE_DB,
+              "users/",
+              uid,
+              "/listOfTodos/",
+              chosenTodos.id,
+              "/todos",
+              id
+            )
+          ),
+      },
+    ]);
     navigation.navigate("Home");
   };
 

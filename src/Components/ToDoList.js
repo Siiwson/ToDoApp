@@ -5,6 +5,7 @@ import {
   Pressable,
   FlatList,
   useColorScheme,
+  Alert,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import React from "react";
@@ -51,17 +52,28 @@ export default function ToDoList({ GlobalState, navigation }) {
 
   //Delete task
   const handleDelete = (item) => {
-    deleteDoc(
-      doc(
-        FIREBASE_DB,
-        "users/",
-        uid,
-        "/listOfTodos/",
-        chosenTodos.id,
-        "/todos",
-        item.id
-      )
-    );
+    Alert.alert("Delete task", "Are you sure you want to delete this task?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        onPress: () =>
+          deleteDoc(
+            doc(
+              FIREBASE_DB,
+              "users/",
+              uid,
+              "/listOfTodos/",
+              chosenTodos.id,
+              "/todos",
+              item.id
+            )
+          ),
+      },
+    ]);
   };
 
   return (

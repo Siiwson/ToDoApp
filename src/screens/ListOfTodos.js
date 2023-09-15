@@ -6,6 +6,7 @@ import {
   Pressable,
   useColorScheme,
   FlatList,
+  Alert,
 } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
@@ -65,7 +66,18 @@ export default function ListOfTodos({ navigation, GlobalState }) {
 
   //Delete list from firebase
   const handleDeleteList = (item) => {
-    deleteDoc(doc(FIREBASE_DB, "users/", uid, "/listOfTodos/", item.id));
+    Alert.alert("Delete list", "Are you sure you want to delete this list?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        onPress: () =>
+          deleteDoc(doc(FIREBASE_DB, "users/", uid, "/listOfTodos/", item.id)),
+      },
+    ]);
   };
 
   return (
