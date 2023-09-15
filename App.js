@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-
 import {
   onAuthStateChanged,
   GoogleAuthProvider,
@@ -10,13 +9,13 @@ import {
 } from "firebase/auth";
 import * as Google from "expo-auth-session/providers/google";
 import { makeRedirectUri } from "expo-auth-session";
+import { FIREBASE_AUTH, FIREBASE_DB } from "./Firebase";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+
 import Home from "./src/screens/Home";
 import ChosenTask from "./src/screens/ChosenTask";
 import LoginPage from "./src/screens/LoginPage";
 import ListOfTodos from "./src/screens/ListOfTodos";
-
-import { FIREBASE_AUTH, FIREBASE_DB } from "./Firebase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 const Stack = createNativeStackNavigator();
 
@@ -63,9 +62,8 @@ export default function App() {
     });
   });
 
-  //test
   const q2 = query(
-    collection(FIREBASE_DB, "users/" + uid + "/listOfTodos"),
+    collection(FIREBASE_DB, "users/", uid, "/listOfTodos"),
     orderBy("timestamp", "asc")
   );
 
@@ -106,7 +104,6 @@ export default function App() {
     setChosenTodos,
   };
 
-  // navigation
   return (
     <NavigationContainer>
       <Stack.Navigator>

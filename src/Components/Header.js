@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: Constants.statusBarHeight,
   },
+  text: {
+    fontSize: 50,
+    fontWeight: "bold",
+  },
   lightHeader: {
     backgroundColor: COLORS.LightBackground,
   },
@@ -40,9 +44,5 @@ const styles = StyleSheet.create({
   },
   darkThemeText: {
     color: COLORS.DarkText,
-  },
-  text: {
-    fontSize: 50,
-    fontWeight: "bold",
   },
 });

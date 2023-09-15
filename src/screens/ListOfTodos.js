@@ -11,8 +11,6 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 import { Keyboard } from "react-native";
 import { COLORS } from "../../Colors";
-
-import Header from "../Components/Header";
 import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import {
   addDoc,
@@ -21,6 +19,8 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+
+import Header from "../Components/Header";
 
 export default function ListOfTodos({ navigation, GlobalState }) {
   //Color theme
@@ -42,11 +42,10 @@ export default function ListOfTodos({ navigation, GlobalState }) {
     listName,
     setListName,
     setColor,
-    chosenTodos,
     setChosenTodos,
   } = GlobalState;
 
-  //Save task to firebase, and close keyboard
+  //Save list to firebase, and close keyboard
   const handleSaveList = (e) => {
     e.preventDefault();
     addDoc(collection(FIREBASE_DB, "users/", uid, "/listOfTodos"), {
@@ -58,11 +57,13 @@ export default function ListOfTodos({ navigation, GlobalState }) {
     Keyboard.dismiss();
   };
 
+  //Set chosen list and navigate to home
   const handleChosenTodos = (item) => {
     setChosenTodos(item);
     navigation.navigate("Home");
   };
 
+  //Delete list from firebase
   const handleDeleteList = (item) => {
     deleteDoc(doc(FIREBASE_DB, "users/", uid, "/listOfTodos/", item.id));
   };

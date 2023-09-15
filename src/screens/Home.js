@@ -6,13 +6,11 @@ import {
   Pressable,
   useColorScheme,
 } from "react-native";
+import { useEffect } from "react";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 import { Keyboard } from "react-native";
 import { COLORS } from "../../Colors";
-
-import Header from "../Components/Header";
-import ToDoList from "../Components/ToDoList";
 import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import {
   addDoc,
@@ -22,7 +20,9 @@ import {
   orderBy,
   onSnapshot,
 } from "firebase/firestore";
-import { useEffect } from "react";
+
+import Header from "../Components/Header";
+import ToDoList from "../Components/ToDoList";
 
 export default function Home({ navigation, GlobalState }) {
   //Color theme
@@ -64,7 +64,11 @@ export default function Home({ navigation, GlobalState }) {
   const q = query(
     collection(
       FIREBASE_DB,
-      "users/" + uid + "/listOfTodos/" + chosenTodos.id + "/todos"
+      "users/",
+      uid,
+      "/listOfTodos/",
+      chosenTodos.id,
+      "/todos"
     ),
     orderBy("timestamp", "asc")
   );
@@ -80,7 +84,7 @@ export default function Home({ navigation, GlobalState }) {
       );
     });
     console.log(uid); //display actual user id
-  }, [task, loading]);
+  }, [task, loading, uid]);
 
   const placeholderInput = "Add task to " + chosenTodos.item.name + " list!";
 
