@@ -14,7 +14,15 @@ import { COLORS } from "../../Colors";
 import Header from "../Components/Header";
 import ToDoList from "../Components/ToDoList";
 import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  query,
+  orderBy,
+  onSnapshot,
+} from "firebase/firestore";
+import { useEffect } from "react";
 
 export default function Home({ navigation, GlobalState }) {
   //Color theme
@@ -29,19 +37,52 @@ export default function Home({ navigation, GlobalState }) {
     colorScheme === "light" ? styles.lightButton : styles.darkButton;
 
   //Global State
-  const { task, setTask, uid } = GlobalState;
+  const { task, setTask, uid, setToDoList, loading, chosenTodos } = GlobalState;
 
   //Save task to firebase, and close keyboard
   const handleSaveTask = (e) => {
     e.preventDefault();
-    addDoc(collection(FIREBASE_DB, "users/", uid, "/todos"), {
-      task: task,
-      isDone: false,
-      timestamp: serverTimestamp(),
-    });
+    addDoc(
+      collection(
+        FIREBASE_DB,
+        "users/",
+        uid,
+        "/listOfTodos/",
+        chosenTodos.id,
+        "/todos"
+      ),
+      {
+        task: task,
+        isDone: false,
+        timestamp: serverTimestamp(),
+      }
+    );
     setTask("");
     Keyboard.dismiss();
   };
+
+  const q = query(
+    collection(
+      FIREBASE_DB,
+      "users/" + uid + "/listOfTodos/" + chosenTodos.id + "/todos"
+    ),
+    orderBy("timestamp", "asc")
+  );
+
+  //Read task from firebase
+  useEffect(() => {
+    onSnapshot(q, (snapshot) => {
+      setToDoList(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          item: doc.data(),
+        }))
+      );
+    });
+    console.log(uid); //display actual user id
+  }, [task, loading]);
+
+  const placeholderInput = "Add task to " + chosenTodos.item.name + " list!";
 
   return (
     <View style={[styles.container, themeContainerStyle]}>
@@ -59,7 +100,7 @@ export default function Home({ navigation, GlobalState }) {
             style={[styles.input, themeInputStyle]}
             onChangeText={setTask}
             value={task}
-            placeholder='Add task!'
+            placeholder={placeholderInput}
           />
           <Pressable
             style={[styles.button, themeButtonStyle]}
@@ -70,7 +111,6 @@ export default function Home({ navigation, GlobalState }) {
             </Text>
           </Pressable>
         </View>
-
         <ToDoList GlobalState={GlobalState} navigation={navigation} />
       </View>
     </View>

@@ -23,7 +23,7 @@ export default function ToDoList({ GlobalState, navigation }) {
     colorScheme === "light" ? styles.lightDoneInput : styles.darkDoneInput;
 
   //Global State
-  const { toDoList, setChosenTask, uid } = GlobalState;
+  const { toDoList, setChosenTask, uid, chosenTodos } = GlobalState;
 
   //Chose task to read all note
   const handleChooseTask = (item) => {
@@ -33,14 +33,35 @@ export default function ToDoList({ GlobalState, navigation }) {
 
   //Mark task as done
   const handleMarkAsDone = (item) => {
-    updateDoc(doc(FIREBASE_DB, "users/", uid, "/todos", item.id), {
-      isDone: !item.item.isDone,
-    });
+    updateDoc(
+      doc(
+        FIREBASE_DB,
+        "users/",
+        uid,
+        "/listOfTodos/",
+        chosenTodos.id,
+        "/todos",
+        item.id
+      ),
+      {
+        isDone: !item.item.isDone,
+      }
+    );
   };
 
   //Delete task
   const handleDelete = (item) => {
-    deleteDoc(doc(FIREBASE_DB, "users/", uid, "/todos", item.id));
+    deleteDoc(
+      doc(
+        FIREBASE_DB,
+        "users/",
+        uid,
+        "/listOfTodos/",
+        chosenTodos.id,
+        "/todos",
+        item.id
+      )
+    );
   };
 
   return (

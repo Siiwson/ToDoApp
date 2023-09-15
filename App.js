@@ -13,6 +13,8 @@ import { makeRedirectUri } from "expo-auth-session";
 import Home from "./src/screens/Home";
 import ChosenTask from "./src/screens/ChosenTask";
 import LoginPage from "./src/screens/LoginPage";
+import ListOfTodos from "./src/screens/ListOfTodos";
+
 import { FIREBASE_AUTH, FIREBASE_DB } from "./Firebase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
@@ -20,13 +22,17 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   //Globalstate menagment
+  const [listOfTodos, setListOfTodos] = useState([]);
   const [toDoList, setToDoList] = useState([]);
   const [task, setTask] = useState("");
   const [chosenTask, setChosenTask] = useState("");
+  const [chosenTodos, setChosenTodos] = useState("");
   const [user, setUser] = useState(null);
   const [uid, setUID] = useState(null);
   const [loading, setLoading] = useState(false);
   const [accesToken, setAccesToken] = useState(null);
+  const [color, setColor] = useState("#e6d055");
+  const [listName, setListName] = useState("");
 
   //Google Auth
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -53,21 +59,20 @@ export default function App() {
   useEffect(() => {
     onAuthStateChanged(FIREBASE_AUTH, (user) => {
       setUser(user);
-      if (user) {
-        setUID(user.uid);
-      }
+      setUID(user.uid);
     });
   });
 
-  const q = query(
-    collection(FIREBASE_DB, "users/" + uid + "/todos"),
+  //test
+  const q2 = query(
+    collection(FIREBASE_DB, "users/" + uid + "/listOfTodos"),
     orderBy("timestamp", "asc")
   );
 
-  //Read task from firebase
+  //Read list from firebase
   useEffect(() => {
-    onSnapshot(q, (snapshot) => {
-      setToDoList(
+    onSnapshot(q2, (snapshot) => {
+      setListOfTodos(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           item: doc.data(),
@@ -75,7 +80,7 @@ export default function App() {
       );
     });
     console.log(uid); //display actual user id
-  }, [task, loading]);
+  }, [listName, loading]);
 
   //Global state
   const GlobalState = {
@@ -91,6 +96,14 @@ export default function App() {
     setUID,
     loading,
     setLoading,
+    listOfTodos,
+    setListOfTodos,
+    color,
+    setColor,
+    listName,
+    setListName,
+    chosenTodos,
+    setChosenTodos,
   };
 
   // navigation
@@ -98,8 +111,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
-          <Stack.Screen name='Home' options={{ headerShown: false }}>
-            {(props) => <Home {...props} GlobalState={GlobalState} />}
+          <Stack.Screen name='ListOfTodos' options={{ headerShown: false }}>
+            {(props) => <ListOfTodos {...props} GlobalState={GlobalState} />}
           </Stack.Screen>
         ) : (
           <Stack.Screen name='LoginPage' options={{ headerShown: false }}>
@@ -112,6 +125,9 @@ export default function App() {
             )}
           </Stack.Screen>
         )}
+        <Stack.Screen name='Home' options={{ headerShown: false }}>
+          {(props) => <Home {...props} GlobalState={GlobalState} />}
+        </Stack.Screen>
         <Stack.Screen name='ChosenTask' options={{ headerShown: false }}>
           {(props) => <ChosenTask {...props} GlobalState={GlobalState} />}
         </Stack.Screen>

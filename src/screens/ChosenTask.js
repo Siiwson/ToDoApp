@@ -27,11 +27,21 @@ export default function ChosenTask({ navigation, GlobalState }) {
   const themTime = colorScheme === "light" ? styles.lightTime : styles.darkTime;
 
   //Global State
-  const { chosenTask, uid } = GlobalState;
+  const { chosenTask, uid, chosenTodos } = GlobalState;
 
   //Delete task and back to main page
   const deleteItemAndReturn = (id) => {
-    deleteDoc(doc(FIREBASE_DB, "users/" + uid + "/todos", id));
+    deleteDoc(
+      doc(
+        FIREBASE_DB,
+        "users/",
+        uid,
+        "/listOfTodos/",
+        chosenTodos.id,
+        "/todos",
+        id
+      )
+    );
     navigation.navigate("Home");
   };
 
