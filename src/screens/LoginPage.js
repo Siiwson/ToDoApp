@@ -12,10 +12,10 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-import Header from "@/Components/Header";
-import { FIREBASE_AUTH, FIREBASE_DB } from "@/Firebase";
+import Header from "../Components/Header";
+import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import { setDoc, doc } from "firebase/firestore";
-import { COLORS } from "@/Colors";
+import { COLORS } from "../../Colors";
 
 export default function LoginPage({ GlobalState, promptAsync }) {
   //Color theme

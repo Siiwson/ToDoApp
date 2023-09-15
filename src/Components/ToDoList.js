@@ -10,8 +10,8 @@ import {
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import React from "react";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { FIREBASE_DB } from "@/Firebase";
-import { COLORS } from "@/Colors";
+import { FIREBASE_DB } from "../../Firebase";
+import { COLORS } from "../../Colors";
 
 export default function ToDoList({ GlobalState, navigation }) {
   //Color theme

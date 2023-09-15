@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 import { Keyboard } from "react-native";
-import { COLORS } from "@/Colors";
-import { FIREBASE_AUTH, FIREBASE_DB } from "@/Firebase";
+import { COLORS } from "../../Colors";
+import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import {
   addDoc,
   collection,
@@ -21,8 +21,8 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-import Header from "@/Components/Header";
-import ToDoList from "@/Components/ToDoList";
+import Header from "../Components/Header";
+import ToDoList from "../Components/ToDoList";
 
 export default function Home({ navigation, GlobalState }) {
   //Color theme

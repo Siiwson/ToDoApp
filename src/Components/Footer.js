@@ -1,7 +1,7 @@
 import { StyleSheet, View, useColorScheme } from "react-native";
 import React from "react";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { COLORS } from "@/Colors";
+import { COLORS } from "../../Colors";
 
 export default function Footer({ navigation }) {
   //Color theme

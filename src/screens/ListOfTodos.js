@@ -11,8 +11,8 @@ import {
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Constants from "expo-constants";
 import { Keyboard } from "react-native";
-import { COLORS } from "@/Colors";
-import { FIREBASE_AUTH, FIREBASE_DB } from "@/Firebase";
+import { COLORS } from "../../Colors";
+import { FIREBASE_AUTH, FIREBASE_DB } from "../../Firebase";
 import {
   addDoc,
   collection,
@@ -21,7 +21,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-import Header from "@/Components/Header";
+import Header from "../Components/Header";
 
 export default function ListOfTodos({ navigation, GlobalState }) {
   //Color theme
