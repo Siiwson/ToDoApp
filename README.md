@@ -22,11 +22,3 @@ Aplikacja posiada ciemny oraz jasny motyw, który dopiera się względem motywu 
 - Na ekranie pojawi się stworzona lista.
 <img src="https://github.com/Siiwson/ToDoApp/assets/72451564/0a5f02ef-a03e-47f9-b575-b8bbf59868b1"  width="500"/>
 <img src="https://github.com/Siiwson/ToDoApp/assets/72451564/6d256cf4-3331-4f81-8e2b-91f004900586"  width="500"/>
-
-- Każde dodane zadanie jest oznaczone, jako nie zrobione. Możemy je oznaczyć jako zrobione przytrzymując przez pół sekundy. Wtedy kolor zmienia się na niebieski.
-- Naciśnięcie czerwonego kosza usuwa bezpowrotnie zapisane zadanie.
-
-- Naciśnięcie na zadanie wyświetla się pogląd, dzięki któremy możemy przeczytać całość dłuższych zadań.
-- Naciśnięcie czerwonego kosza usuwa bezpowrotnie zapisane zadanie.
-- Naciśnięcie ikonki domku powraca do strony głownej, na której są zadania.
-<img src="https://github.com/Siiwson/ToDoApp/assets/72451564/670bb27b-0bfe-445b-9ffb-6a9c6d1e8541"  width="500"/>
