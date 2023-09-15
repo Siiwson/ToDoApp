@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, useColorScheme } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
-import { COLORS } from "../../Colors";
+import { COLORS } from "@/Colors";
 
 export default function Header() {
   //Color theme

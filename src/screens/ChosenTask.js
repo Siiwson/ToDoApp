@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { doc, deleteDoc } from "firebase/firestore";
-import { FIREBASE_DB } from "../../Firebase";
-import { COLORS } from "../../Colors";
+import { FIREBASE_DB } from "@/Firebase";
+import { COLORS } from "@/Colors";
 
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import Header from "@/Components/Header";
+import Footer from "@/Components/Footer";
 
 export default function ChosenTask({ navigation, GlobalState }) {
   //Color theme
