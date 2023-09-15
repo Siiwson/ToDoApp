@@ -64,11 +64,7 @@ export default function Home({ navigation, GlobalState }) {
   const q = query(
     collection(
       FIREBASE_DB,
-      "users/",
-      uid,
-      "/listOfTodos/",
-      chosenTodos.id,
-      "/todos"
+      "users/" + uid + "/listOfTodos/" + chosenTodos.id + "/todos"
     ),
     orderBy("timestamp", "asc")
   );

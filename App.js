@@ -63,7 +63,7 @@ export default function App() {
   });
 
   const q2 = query(
-    collection(FIREBASE_DB, "users/", uid, "/listOfTodos"),
+    collection(FIREBASE_DB, "users/" + uid + "/listOfTodos"),
     orderBy("timestamp", "asc")
   );
 
