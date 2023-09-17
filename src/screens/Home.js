@@ -80,20 +80,13 @@ export default function Home({ navigation, GlobalState }) {
       );
     });
     console.log(uid); //display actual user id
-  }, [task, loading, uid]);
+  }, [task, loading]);
 
   const placeholderInput = "Add task to " + chosenTodos.item.name + " list!";
 
   return (
     <View style={[styles.container, themeContainerStyle]}>
       <Header />
-      <Pressable onPress={() => FIREBASE_AUTH.signOut()} style={styles.signout}>
-        <AntDesign
-          name='close'
-          size={40}
-          color={colorScheme === "light" ? COLORS.LightText : COLORS.DarkText}
-        />
-      </Pressable>
       <View style={styles.body}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -145,12 +138,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     alignItems: "center",
-  },
-  signout: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    paddingTop: Constants.statusBarHeight,
   },
   lightInput: {
     backgroundColor: COLORS.white,

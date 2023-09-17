@@ -78,7 +78,7 @@ export default function App() {
       );
     });
     console.log(uid); //display actual user id
-  }, [listName, loading, uid]);
+  }, [listName, loading]);
 
   //Global state
   const GlobalState = {
